@@ -405,7 +405,8 @@ function main(
     };
 
     var setupSocket = function() {
-      var url = updateUrl || 'http://localhost:3123';
+      var devServer = (typeof location !== "undefined" && location !== null ? location.hostname : void 0) || "localhost";
+      var url = updateUrl || ("http://" + devServer + ":3123");
       var socket = socketio(url, {'force new connection': true});
       console.log('[HMR] Attempting websocket connection to', url);
 
